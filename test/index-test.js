@@ -10,7 +10,7 @@ import Comment from '../src/Comment.js'
 import ColorBox from '../src/ColorBox.js'
 
 Enzyme.configure({ adapter: new Adapter() })
-
+ 
 describe('BlogPost', () => {
   let comments
   
