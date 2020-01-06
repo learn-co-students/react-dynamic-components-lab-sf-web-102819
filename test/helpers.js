@@ -4,19 +4,25 @@ global.requestAnimationFrame = function (cb) {
     return setTimeout(cb, 0);
 };
 
-var jsdom = require('jsdom').jsdom;
+// var jsdom = require('jsdom').jsdom;
 
-var exposedProperties = ['window', 'navigator', 'document'];
+// var exposedProperties = ['window', 'navigator', 'document'];
 
-global.document = jsdom('<div id="root"></div>');
-global.window = document.defaultView;
-Object.keys(document.defaultView).forEach((property) => {
-  if (typeof global[property] === 'undefined') {
-    exposedProperties.push(property);
-    global[property] = document.defaultView[property];
-  }
-});
+// global.document = jsdom('<div id="root"></div>');
+// global.window = document.defaultView;
+// Object.keys(document.defaultView).forEach((property) => {
+//   if (typeof global[property] === 'undefined') {
+//     exposedProperties.push(property);
+//     global[property] = document.defaultView[property];
+//   }
+// });
 
-global.navigator = {
-  userAgent: 'node.js'
-};
+// global.navigator = {
+//   userAgent: 'node.js'
+// };
+
+var jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+
+const { document } = (new JSDOM('')).window;
+global.document = document;
